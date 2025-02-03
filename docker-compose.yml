@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:14-alpine
+    container_name: sample-app
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sample_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - my_network
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
+    driver: bridge
